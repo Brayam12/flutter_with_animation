@@ -21,6 +21,27 @@ class _LoginScreenState extends State<LoginScreen> {
   SMITrigger? trigFail; //se entristece
 
 
+  //1)  FocusNode 
+  final emailFocus=FocusNode();
+  final passFocus=FocusNode();
+
+  //2)Listeners (oyentes/chismoso)
+
+  @override
+  void initState() {
+    super.initState();
+    emailFocus.addListener((){
+    if (emailFocus.hasFocus){
+      //Manos abajo en email
+      isHandsUp?.change(false);
+    }
+    });
+    passFocus.addListener((){
+      //Manos arriba en password
+      isHandsUp?.change(passFocus.hasFocus);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // para obtener el tamaño de la pantalla del disp.
@@ -58,10 +79,13 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 10),
               // campo de texto del email
               TextField(
+                //Asignas el focusNode al TextField
+                //Llamas a tu familia chismosa
+                focusNode: emailFocus,
                 onChanged: (value){
                   if (isHandsUp != null) {
                     //No tapar los ojos al escribir email
-                    isHandsUp!.change(false);
+                    //isHandsUp!.change(false);
                   }
                   if (isChecking == null) return;
                   //Activar el modo chismoso
@@ -79,10 +103,13 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 10),
               // campo de texto de la contraseña
               TextField(
+                //Asignas el focusNode al TextField
+                //Llamas a tu familia chismosa
+                focusNode: passFocus,
                 onChanged: (value){
                   if (isChecking != null) {
                     //No tapar los ojos al escribir email
-                    isChecking!.change(false);
+                    //isChecking!.change(false);
                   }
                   if (isHandsUp == null) return;
                   //Activar el modo chismoso
@@ -153,5 +180,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+  //Liberación de recursos/Limpieza de focos
+  @override
+  void dispose(){
+    emailFocus.dispose();
+    passFocus.dispose();
+    super.dispose();
   }
 }
