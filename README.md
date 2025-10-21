@@ -45,6 +45,6 @@ Instead of just playing an animation from start to finish, a state machine can:
 Rive animation used in this project: https://rive.app/marketplace/3645-7621-remix-of-login-machine/
 
 ## Subject Data💾
-Name of the subject: Graphing🖥️
+Name of the subject: Grafication🖥️
 
 Teacher´s Name: Rodrigo Fidel Gaxiola Sosa👨🏻‍🏫
